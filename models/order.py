@@ -25,8 +25,9 @@ class OrderDetail(models.Model):
     _description = 'New Description'
 
     order_id = fields.Many2one(comodel_name='wedding.order', string='Order')
-    panggung_id = fields.Many2one(comodel_name='wedding.panggung', string='Panggung')    
+    panggung_id = fields.Many2one(comodel_name='wedding.panggung', string='Panggung')   
     
+         
     name = fields.Selection(string='Name', selection=[('panggung', 'Panggung'),('kursi tamu','Kursi Tamu')])
     harga = fields.Integer(compute='_compute_harga', string='harga')
     qty = fields.Integer(string='Quantity')
