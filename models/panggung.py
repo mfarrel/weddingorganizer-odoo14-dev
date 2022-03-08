@@ -15,6 +15,8 @@ class Panggung(models.Model):
     
     bunga = fields.Selection(string='Tipe Bunga', selection=[('bunga mati', 'Bunga Dead'), ('bunga hidup', 'Bunga Life')])    
     accesories = fields.Char(string='Accesories Pelaminan')
+    
+    
     harga = fields.Integer(compute='_compute_harga', string='Harga')
     
     @api.depends('pelaminan_id','kursipengantin_id')
