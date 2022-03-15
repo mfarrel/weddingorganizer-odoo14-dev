@@ -9,7 +9,7 @@ class Order(models.Model):
     orderpanggungdetail_ids = fields.One2many(
         comodel_name='wedding.orderpanggungdetail', 
         inverse_name='order_id', 
-        string='Order Detail')
+        string='Order Panggung')
     
     orderkursitamudetail_ids = fields.One2many(
         comodel_name='wedding.orderkursitamudetail', 
@@ -23,7 +23,7 @@ class Order(models.Model):
     pemesan = fields.Many2one(
         comodel_name='res.partner', 
         string='Pemesan', 
-        domain=[('is_customernya','=', True)])
+        domain=[('is_customernya','=', True)],store=True)
     
     
     
@@ -35,6 +35,10 @@ class Order(models.Model):
             a = sum(self.env['wedding.orderpanggungdetail'].search([('order_id', '=', record.id)]).mapped('harga'))
             b = sum(self.env['wedding.orderkursitamudetail'].search([('orderk_id', '=', record.id)]).mapped('harga'))
             record.total = a + b
+    
+    sudah_kembali = fields.Boolean(string='Sudah Dikembalikan', default=False)
+    def kembali_barang(self):
+        pass
     
 
 class OrderPanggungDetail(models.Model):
@@ -67,6 +71,8 @@ class OrderPanggungDetail(models.Model):
         if record.qty:
             self.env['wedding.panggung'].search([('id','=',record.panggung_id.id)]).write({'stok':record.panggung_id.stok-record.qty})
             return record
+        
+    
         
 class OrderKursiTamuDetail(models.Model):
     _name = 'wedding.orderkursitamudetail'
