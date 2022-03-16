@@ -23,6 +23,7 @@ class Order(models.Model):
         comodel_name='res.partner', 
         string='Pemesan', 
         domain=[('is_customernya','=', True)],store=True)
+        
     
     total = fields.Integer(compute='_compute_total', string='Total', store=True)
     
@@ -34,9 +35,9 @@ class Order(models.Model):
             record.total = a + b
     
     sudah_kembali = fields.Boolean(string='Sudah Dikembalikan', default=False)
-    def kembali_barang(self):
-        pass
     
+    
+            
 
 class OrderPanggungDetail(models.Model):
     _name = 'wedding.orderpanggungdetail'
@@ -103,6 +104,7 @@ class OrderKursiTamuDetail(models.Model):
     def _compute_harga(self):
         for record in self:
                record.harga = record.harga_satuan * record.qty
+               
     
     @api.model
     def create(self,vals):

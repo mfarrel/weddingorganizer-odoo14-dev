@@ -7,9 +7,7 @@
         <field name="arch" type="xml">
         
             <tree>
-            <header>
-                <button name="kembali_barang" string="Kembali Barang" class="btn btn-success" type="object"/>
-            </header>
+            
                 <!-- Add your fields here -->
                 <field name="name"/>   
                 <field name="pemesan"/> 
@@ -28,8 +26,10 @@
         <field name="name">Form Order</field>
         <field name="model">wedding.order</field>
         <field name="arch" type="xml">
-            <form string="">
-                <sheet>
+        
+            <form string="Order Detail">
+            
+                <sheet>                
                     <group>
                         <!-- Add your fields here -->
                         <field name="name"/> 
