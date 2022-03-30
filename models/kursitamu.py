@@ -9,6 +9,8 @@ class KursiTamu(models.Model):
     tipe = fields.Selection(string='Tipe Kursi', selection=[('plastik','Plastik'), ('besi','Besi'),  ('stainless','Stainless')])
     stok = fields.Integer(string='Stok Kursi')
     harga = fields.Integer(string='Harga Sewa per Unit')
+    img = fields.Binary(string='Image')
+    
     
     
     

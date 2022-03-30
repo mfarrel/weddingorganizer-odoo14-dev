@@ -4,10 +4,11 @@
     <record id="wedding_order_view_tree" model="ir.ui.view">
         <field name="name">Wedding Order</field>
         <field name="model">wedding.order</field>
-        <field name="arch" type="xml">
-        
+        <field name="arch" type="xml">        
             <tree>
-            
+                <header>
+                  <button name="invoice" string="Buat Invoice" class="btn btn-success" type="object"/>                  
+                </header>            
                 <!-- Add your fields here -->
                 <field name="name"/>   
                 <field name="pemesan"/> 

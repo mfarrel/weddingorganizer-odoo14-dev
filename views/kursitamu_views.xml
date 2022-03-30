@@ -8,10 +8,10 @@
             <tree>
                 <!-- Add your fields here -->
                 <field name="name"/>
-                <field name="tipe"/>
+                <field name="tipe" widget="selection"/>
                 <field name="stok"/>
                 <field name="harga"/>
-                
+                <field name="img" widget="image"/>
             </tree>
         </field>
     </record>
@@ -25,9 +25,10 @@
                     <group>
                         <!-- Add your fields here -->
                         <field name="name"/>
-                        <field name="tipe"/>
+                        <field name="tipe" widget="selection"/>
                         <field name="stok"/>
                         <field name="harga"/>
+                        <field name="img" widget="image"/>
                     </group>
                 </sheet>
             </form>

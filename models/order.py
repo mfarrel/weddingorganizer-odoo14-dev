@@ -36,8 +36,26 @@ class Order(models.Model):
     
     sudah_kembali = fields.Boolean(string='Sudah Dikembalikan', default=False)
     
+    def invoice(self):
+        invoices = self.env['account.move'].create({
+            'move_type': 'out_invoice',  
+            'partner_id': self.pemesan,
+            'invoice_date': self.tanggal_pesan,
+            'date': fields.Datetime.now(),
+            'invoice_line_ids': [(0, 0, {
+                'product_id': 0,
+                'name' :'xxx' ,
+                'quantity': 1,
+                'name': 'product test 1',
+                'discount': 0,
+                'price_unit': self.total,
+                'price_subtotal': self.total,
+            })]            
+        })
+        self.sudah_kembali=True
+        return invoices  
     
-            
+    
 
 class OrderPanggungDetail(models.Model):
     _name = 'wedding.orderpanggungdetail'
@@ -70,6 +88,7 @@ class OrderPanggungDetail(models.Model):
             self.env['wedding.panggung'].search([('id','=',record.panggung_id.id)]).write({'stok':record.panggung_id.stok-record.qty})
             return record
         
+    
             
 class OrderKursiTamuDetail(models.Model):
     _name = 'wedding.orderkursitamudetail'
@@ -113,3 +132,5 @@ class OrderKursiTamuDetail(models.Model):
             self.env['wedding.kursitamu'].search([('id','=',record.kursitamu_id.id)]).write({'stok':record.kursitamu_id.stok-record.qty})
             return record
     
+
+
